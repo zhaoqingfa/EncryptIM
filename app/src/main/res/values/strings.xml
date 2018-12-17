@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Player</string>
+
+    <string name="net_timeout_error">网络超时错误</string>
+    <string name="net_connect_error">网络连接错误</string>
+    <string name="net_unknown_error">网络未知错误</string>
+    <string name="parameter_error">传参错误</string>
+    <string name="unknown_error">未知错误</string>
+    <string name="data_json_error">数据解析错误</string>
+</resources>
