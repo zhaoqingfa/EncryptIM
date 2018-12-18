@@ -3,10 +3,10 @@ package com.encrypt.im.common.log;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
-import com.edu.player.common.log.klog.BaseLog;
-import com.edu.player.common.log.klog.FileLog;
-import com.edu.player.common.log.klog.JsonLog;
-import com.edu.player.common.log.klog.XmlLog;
+import com.encrypt.im.common.log.klog.BaseLog;
+import com.encrypt.im.common.log.klog.FileLog;
+import com.encrypt.im.common.log.klog.JsonLog;
+import com.encrypt.im.common.log.klog.XmlLog;
 
 import java.io.File;
 import java.io.PrintWriter;

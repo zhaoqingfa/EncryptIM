@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Player</string>
+    <string name="app_name">EncryptIM</string>
 
     <string name="net_timeout_error">网络超时错误</string>
     <string name="net_connect_error">网络连接错误</string>
@@ -7,4 +7,9 @@
     <string name="parameter_error">传参错误</string>
     <string name="unknown_error">未知错误</string>
     <string name="data_json_error">数据解析错误</string>
+
+    <string name="tab_chat">消息</string>
+    <string name="tab_contacts">联系人</string>
+    <string name="tab_found">发现</string>
+    <string name="tab_me">个人中心</string>
 </resources>

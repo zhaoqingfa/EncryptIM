@@ -77,11 +77,11 @@ public class SocketClient {
                 switch (msg.what) {
                     case ASSIST_MSG_FLAG_CONNECT:
                         try {
-                            try {
-                                Thread.sleep(1000);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
+//                            try {
+//                                Thread.sleep(1000);
+//                            } catch (InterruptedException e) {
+//                                e.printStackTrace();
+//                            }
                             mSocket = new Socket(mAddr, mPort);
                             LogUtil.d(TAG, "build connect success");
                             if (mSocket.isConnected()) {
