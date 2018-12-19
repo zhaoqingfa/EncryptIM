@@ -11,4 +11,10 @@
     <dimen name="chat_button_send_width">50dp</dimen>
     <dimen name="chat_button_send_height">35dp</dimen>
     <dimen name="chat_button_send_margin_left">10dp</dimen>
+
+    <dimen name="x_footer_container_height">90dp</dimen>
+    <dimen name="x_footer_container_padding">10dp</dimen>
+    <dimen name="x_footer_progressbar_width">30dp</dimen>
+    <dimen name="x_footer_progressbar_height">30dp</dimen>
+    <dimen name="x_footer_arrow_margin">30dp</dimen>
 </resources>

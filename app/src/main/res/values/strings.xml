@@ -14,4 +14,6 @@
     <string name="tab_me">个人中心</string>
 
     <string name="chat_send">发送</string>
+
+    <string name="x_footer_load_more">加载更多</string>
 </resources>

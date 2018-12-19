@@ -6,6 +6,7 @@
     <color name="colorFFFFFF">#FFFFFF</color>
     <color name="color0099FF">#0099FF</color>
     <color name="colorABADBB">#ABADBB</color>
+    <color name="color333333">#333333</color>
 
     
 
@@ -18,4 +19,6 @@
     <color name="chat_send_button_normal">@color/colorABADBB</color>
     <color name="chat_send_button">@color/color0099FF</color>
     <color name="chat_send_button_text_color">@color/colorFFFFFF</color>
+
+    <color name="x_footer_text_color">@color/color333333</color>
 </resources>

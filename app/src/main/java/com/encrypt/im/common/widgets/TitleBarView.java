@@ -12,12 +12,16 @@ import com.encrypt.im.R;
  */
 
 public class TitleBarView extends RelativeLayout{
+
+
     public TitleBarView(Context context) {
-        this(context, null);
+        super(context);
+        init(context);
     }
 
     public TitleBarView(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
+        init(context);
     }
 
     public TitleBarView(Context context, AttributeSet attrs, int defStyleAttr) {
