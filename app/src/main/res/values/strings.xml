@@ -12,4 +12,6 @@
     <string name="tab_contacts">联系人</string>
     <string name="tab_found">发现</string>
     <string name="tab_me">个人中心</string>
+
+    <string name="chat_send">发送</string>
 </resources>

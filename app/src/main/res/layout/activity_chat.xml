@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <com.encrypt.im.common.widgets.TitleBarView
+        android:id="@+id/tb_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.encrypt.im.common.widgets.TitleBarView>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/margin"
+        android:paddingRight="@dimen/margin"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="bottom"
+            >
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <EditText
+                    android:id="@+id/met_send_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/chat_button_send_height"
+                    android:background="@drawable/shape_radius_white_solid"
+                    />
+            </LinearLayout>
+            <Button
+                android:id="@+id/mb_send"
+                android:layout_width="@dimen/chat_button_send_width"
+                android:layout_height="@dimen/chat_button_send_height"
+                android:layout_marginLeft="@dimen/chat_button_send_margin_left"
+                android:text="@string/chat_send"
+                android:textColor="@color/chat_send_button_text_color"
+                android:background="@drawable/shape_chat_button"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_5dp">
+
+        </LinearLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </FrameLayout>
+    </LinearLayout>
+
+</RelativeLayout>

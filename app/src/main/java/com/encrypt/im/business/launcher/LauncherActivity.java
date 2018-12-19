@@ -7,6 +7,7 @@ import android.os.Looper;
 import com.encrypt.im.R;
 import com.encrypt.im.base.BaseActivity;
 import com.encrypt.im.base.interfac.IPresenter;
+import com.encrypt.im.business.chat.ChatActivity;
 import com.encrypt.im.business.main.MainActivity;
 
 public class LauncherActivity extends BaseActivity {
@@ -26,7 +27,7 @@ public class LauncherActivity extends BaseActivity {
         mRunnable = new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(LauncherActivity.this, MainActivity.class);
+                Intent intent = new Intent(LauncherActivity.this, ChatActivity.class);
                 startActivity(intent);
                 finish();
             }

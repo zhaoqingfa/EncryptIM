@@ -12,4 +12,10 @@
     <color name="tab_background">@color/colorFFFFFF</color>
     <color name="tab_text_selected_color">@color/color0099FF</color>
     <color name="tab_text_color">@color/colorABADBB</color>
+
+    <color name="title_bar_background">@color/color0099FF</color>
+
+    <color name="chat_send_button_normal">@color/colorABADBB</color>
+    <color name="chat_send_button">@color/color0099FF</color>
+    <color name="chat_send_button_text_color">@color/colorFFFFFF</color>
 </resources>
