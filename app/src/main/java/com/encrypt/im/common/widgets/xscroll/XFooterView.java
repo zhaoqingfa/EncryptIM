@@ -30,10 +30,10 @@ public class XFooterView extends LinearLayout {
 
     private TextView mHintView;
 
-    private ImageView mHintImage;
+//    private ImageView mHintImage;
 
-    private Animation mRotateUpAnim;
-    private Animation mRotateDownAnim;
+//    private Animation mRotateUpAnim;
+//    private Animation mRotateDownAnim;
 
     private int mState = STATE_NORMAL;
     public XFooterView(Context context) {
@@ -59,17 +59,17 @@ public class XFooterView extends LinearLayout {
 
         mProgressBar = mLayout.findViewById(R.id.mpb_footer_progressbar);
         mHintView = (TextView) mLayout.findViewById(R.id.mtv_footer_hint_text);
-        mHintImage = (ImageView) mLayout.findViewById(R.id.miv_footer_arrow);
+//        mHintImage = (ImageView) mLayout.findViewById(R.id.miv_footer_arrow);
 
-        mRotateUpAnim = new RotateAnimation(0.0f, 180.0f, Animation.RELATIVE_TO_SELF, 0.5f,
-                Animation.RELATIVE_TO_SELF, 0.5f);
-        mRotateUpAnim.setDuration(ROTATE_ANIM_DURATION);
-        mRotateUpAnim.setFillAfter(true);
-
-        mRotateDownAnim = new RotateAnimation(180.0f, 0.0f, Animation.RELATIVE_TO_SELF, 0.5f,
-                Animation.RELATIVE_TO_SELF, 0.5f);
-        mRotateDownAnim.setDuration(ROTATE_ANIM_DURATION);
-        mRotateDownAnim.setFillAfter(true);
+//        mRotateUpAnim = new RotateAnimation(0.0f, 180.0f, Animation.RELATIVE_TO_SELF, 0.5f,
+//                Animation.RELATIVE_TO_SELF, 0.5f);
+//        mRotateUpAnim.setDuration(ROTATE_ANIM_DURATION);
+//        mRotateUpAnim.setFillAfter(true);
+//
+//        mRotateDownAnim = new RotateAnimation(180.0f, 0.0f, Animation.RELATIVE_TO_SELF, 0.5f,
+//                Animation.RELATIVE_TO_SELF, 0.5f);
+//        mRotateDownAnim.setDuration(ROTATE_ANIM_DURATION);
+//        mRotateDownAnim.setFillAfter(true);
     }
 
     /**
@@ -103,45 +103,45 @@ public class XFooterView extends LinearLayout {
      *
      * @param state
      */
-//    public void setState(int state) {
-//        if (state == mState) return;
-//
-//        if (state == STATE_LOADING) {
-////            mHintImage.clearAnimation();
-////            mHintImage.setVisibility(View.INVISIBLE);
-//            mProgressBar.setVisibility(View.VISIBLE);
-//            mHintView.setVisibility(View.INVISIBLE);
-//        } else {
-//            mHintView.setVisibility(View.VISIBLE);
-////            mHintImage.setVisibility(View.VISIBLE);
-//            mProgressBar.setVisibility(View.INVISIBLE);
-//        }
-//
-//        switch (state) {
-//            case STATE_NORMAL:
-////                if (mState == STATE_READY) {
-////                    mHintImage.startAnimation(mRotateDownAnim);
-////                }
-////                if (mState == STATE_LOADING) {
-////                    mHintImage.clearAnimation();
-////                }
-//                mHintView.setText(R.string.footer_hint_load_normal);
-//                break;
-//
-//            case STATE_READY:
-//                if (mState != STATE_READY) {
-////                    mHintImage.clearAnimation();
-////                    mHintImage.startAnimation(mRotateUpAnim);
-//                    mHintView.setText(R.string.footer_hint_load_ready);
+    public void setState(int state) {
+        if (state == mState) return;
+
+        if (state == STATE_LOADING) {
+//            mHintImage.clearAnimation();
+//            mHintImage.setVisibility(View.INVISIBLE);
+            mProgressBar.setVisibility(View.VISIBLE);
+            mHintView.setVisibility(View.INVISIBLE);
+        } else {
+            mHintView.setVisibility(View.VISIBLE);
+//            mHintImage.setVisibility(View.VISIBLE);
+            mProgressBar.setVisibility(View.INVISIBLE);
+        }
+
+        switch (state) {
+            case STATE_NORMAL:
+//                if (mState == STATE_READY) {
+//                    mHintImage.startAnimation(mRotateDownAnim);
 //                }
-//                break;
-//
-//            case STATE_LOADING:
-//                break;
-//        }
-//
-//        mState = state;
-//    }
+//                if (mState == STATE_LOADING) {
+//                    mHintImage.clearAnimation();
+//                }
+                mHintView.setText(R.string.x_footer_load_more);
+                break;
+
+            case STATE_READY:
+                if (mState != STATE_READY) {
+//                    mHintImage.clearAnimation();
+//                    mHintImage.startAnimation(mRotateUpAnim);
+                    mHintView.setText(R.string.x_footer_release_load_more);
+                }
+                break;
+
+            case STATE_LOADING:
+                break;
+        }
+
+        mState = state;
+    }
 
     /**
      * normal status

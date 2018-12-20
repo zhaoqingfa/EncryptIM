@@ -4,15 +4,23 @@
     android:layout_height="match_parent"
     >
     <com.encrypt.im.common.widgets.TitleBarView
-        android:id="@+id/tb_bar"
+        android:id="@+id/mtb_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
     </com.encrypt.im.common.widgets.TitleBarView>
+    <com.encrypt.im.common.widgets.xscroll.XScrollView
+        android:id="@+id/test"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/mtb_bar"
+        android:layout_above="@+id/mll_chat_send_container"
+        >
 
-
+    </com.encrypt.im.common.widgets.xscroll.XScrollView>
 
     <LinearLayout
+        android:id="@+id/mll_chat_send_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="@dimen/margin"

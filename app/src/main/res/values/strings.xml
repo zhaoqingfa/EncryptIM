@@ -16,4 +16,9 @@
     <string name="chat_send">发送</string>
 
     <string name="x_footer_load_more">加载更多</string>
+    <string name="x_footer_release_load_more">释放加载更多</string>
+    <string name="x_header_hint_refresh_normal">下拉刷新</string>
+    <string name="x_header_hint_refresh_loading">正在刷新</string>
+    <string name="x_header_hint_refresh_ready">释放将刷新</string>
+    <string name="x_header_hint_refresh_time">时间：</string>
 </resources>
