@@ -17,6 +17,8 @@ import android.widget.Scroller;
 
 import com.encrypt.im.R;
 
+import com.encrypt.im.R;
+
 /**
  * Created by zqf on 2018/12/19.
  */
@@ -54,6 +56,7 @@ public class XScrollView extends ScrollView implements AbsListView.OnScrollListe
     // used for scroll back
     private Scroller mScroller;
 
+
     private float mLastY = -1;
 
     public XScrollView(Context context) {
@@ -78,6 +81,7 @@ public class XScrollView extends ScrollView implements AbsListView.OnScrollListe
         mFooterLayout = (LinearLayout) findViewById(R.id.mll_footer_layout);
 
         mScroller = new Scroller(context, new DecelerateInterpolator());
+
 //        this.setOnScrollChangeListener(this);
 
         // init header view
@@ -134,7 +138,6 @@ public class XScrollView extends ScrollView implements AbsListView.OnScrollListe
     }
 
 
-
 //    /**
 //     * Enable or disable pull up load more feature.
 //     *
@@ -181,6 +184,7 @@ public class XScrollView extends ScrollView implements AbsListView.OnScrollListe
             mIsPullRefreshing = false;
             resetHeaderHeight();
         }
+
     }
 
     /**
@@ -261,7 +265,6 @@ public class XScrollView extends ScrollView implements AbsListView.OnScrollListe
             default:
                 // reset
                 mLastY = -1;
-
                 resetHeaderOrBottom();
                 break;
         }
@@ -273,6 +276,7 @@ public class XScrollView extends ScrollView implements AbsListView.OnScrollListe
         return getScrollY() <= 0 || mHeaderView.getVisibleHeight() > mHeaderContentHeight
                 || mContentLayout.getTop() > 0;
     }
+
 
     private boolean isBottom() {
         return Math.abs(getScrollY() + getHeight() - computeVerticalScrollRange()) <= 5 ||
@@ -465,4 +469,6 @@ public class XScrollView extends ScrollView implements AbsListView.OnScrollListe
 
         public void onLoadMore();
     }
+
+
 }
