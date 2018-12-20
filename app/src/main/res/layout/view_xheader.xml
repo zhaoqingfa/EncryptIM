@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="bottom">
+    <RelativeLayout
+        android:id="@+id/mrl_header_content"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x_header_content_height">
+
+        <LinearLayout
+            android:id="@+id/mll_header_text_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/mtv_header_hint_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/x_header_text_size"
+                android:text="@string/x_header_hint_refresh_normal" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/x_header_text_margin_top">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/x_header_hint_refresh_time"
+                    android:textSize="@dimen/x_header_text_size" />
+
+                <TextView
+                    android:id="@+id/mtv_header_hint_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/x_header_text_size" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/mpb_header_progressbar"
+            android:layout_width="@dimen/x_header_progressbar_width"
+            android:layout_height="@dimen/x_header_progressbar_height"
+            android:layout_toLeftOf="@+id/mll_header_text_layout"
+            android:layout_marginRight="@dimen/x_header_arrow_margin"
+            android:layout_centerVertical="true"
+            android:visibility="gone" />
+
+        <ImageView
+            android:id="@+id/miv_header_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/mll_header_text_layout"
+            android:layout_marginRight="@dimen/x_header_arrow_margin"
+            android:layout_centerVertical="true"
+            android:contentDescription="@null"
+            android:src="@drawable/icon_arrow_down" />
+
+    </RelativeLayout>
+</LinearLayout>
+

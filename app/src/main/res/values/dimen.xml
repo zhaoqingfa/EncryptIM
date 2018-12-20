@@ -17,4 +17,10 @@
     <dimen name="x_footer_progressbar_width">30dp</dimen>
     <dimen name="x_footer_progressbar_height">30dp</dimen>
     <dimen name="x_footer_arrow_margin">30dp</dimen>
+    <dimen name="x_header_content_height">60dp</dimen>
+    <dimen name="x_header_progressbar_width">30dp</dimen>
+    <dimen name="x_header_progressbar_height">30dp</dimen>
+    <dimen name="x_header_arrow_margin">30dp</dimen>
+    <dimen name="x_header_text_size">12sp</dimen>
+    <dimen name="x_header_text_margin_top">3dp</dimen>
 </resources>
