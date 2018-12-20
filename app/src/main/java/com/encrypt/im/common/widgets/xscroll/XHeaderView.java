@@ -172,4 +172,8 @@ public class XHeaderView extends LinearLayout {
     public void setRefreshTime(String time) {
         mHintTextTime.setText(time);
     }
+
+    public void headerContentVisibility(int visibility) {
+        mHeaderContent.setVisibility(visibility);
+    }
 }

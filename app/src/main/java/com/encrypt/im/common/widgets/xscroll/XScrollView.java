@@ -3,7 +3,6 @@ package com.encrypt.im.common.widgets.xscroll;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
-import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -44,7 +43,7 @@ public class XScrollView extends ScrollView implements AbsListView.OnScrollListe
 
     private boolean mIsEnablePullRefresh = true;
     private boolean mIsPullRefreshing = false;
-    private boolean mEnableAutoLoad = false;
+    private boolean mIsAutoLoad = false;
     private boolean mIsEnablePullLoad = true;
     private boolean mIsPullLoading = false;
     // for mScroller, scroll back from header or footer.
@@ -53,6 +52,7 @@ public class XScrollView extends ScrollView implements AbsListView.OnScrollListe
     private OnXScrollViewListener mListener;
     // used for scroll back
     private Scroller mScroller;
+
 
     private float mLastY = -1;
 
@@ -78,6 +78,7 @@ public class XScrollView extends ScrollView implements AbsListView.OnScrollListe
         mFooterLayout = (LinearLayout) findViewById(R.id.mll_footer_layout);
 
         mScroller = new Scroller(context, new DecelerateInterpolator());
+
 //        this.setOnScrollChangeListener(this);
 
         // init header view
@@ -130,47 +131,37 @@ public class XScrollView extends ScrollView implements AbsListView.OnScrollListe
     public void setPullRefreshEnable(boolean enable) {
         mIsEnablePullRefresh = enable;
         // disable, hide the content
-        mHeaderView.setVisibility(enable ? View.VISIBLE : View.INVISIBLE);
+        mHeaderView.headerContentVisibility(enable ? View.VISIBLE : View.INVISIBLE);
     }
 
 
-
-//    /**
-//     * Enable or disable pull up load more feature.
-//     *
-//     * @param enable
-//     */
-//    public void setPullLoadEnable(boolean enable) {
-//        mIsEnablePullRefresh = enable;
-//
-//        if (!mEnablePullLoad) {
-//            mFooterView.setBottomMargin(0);
-//            mFooterView.hide();
-//            mFooterView.setPadding(0, 0, 0, mFooterView.getHeight() * (-1));
-//            mFooterView.setOnClickListener(null);
-//
-//        } else {
-//            mPullLoading = false;
-//            mFooterView.setPadding(0, 0, 0, 0);
-//            mFooterView.show();
-//            mFooterView.setState(XFooterView.STATE_NORMAL);
-//            // both "pull up" and "click" will invoke load more.
-//            mFooterView.setOnClickListener(new OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    startLoadMore();
-//                }
-//            });
-//        }
-//    }
-
     /**
-     * Enable or disable auto load more feature when scroll to bottom.
+     * Enable or disable pull up load more feature.
      *
      * @param enable
      */
-    public void setAutoLoadEnable(boolean enable) {
-        mEnableAutoLoad = enable;
+    public void setPullLoadEnable(boolean enable) {
+        mIsEnablePullLoad = enable;
+
+        if (!mIsEnablePullLoad) {
+            mFooterView.setBottomMargin(0);
+            mFooterView.hide();
+            mFooterView.setPadding(0, 0, 0, mFooterView.getHeight() * (-1));
+            mFooterView.setOnClickListener(null);
+
+        } else {
+            mIsPullLoading = false;
+            mFooterView.setPadding(0, 0, 0, 0);
+            mFooterView.show();
+            mFooterView.setState(XFooterView.STATE_NORMAL);
+            // both "pull up" and "click" will invoke load more.
+            mFooterView.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startLoadMore();
+                }
+            });
+        }
     }
 
     /**
@@ -181,6 +172,7 @@ public class XScrollView extends ScrollView implements AbsListView.OnScrollListe
             mIsPullRefreshing = false;
             resetHeaderHeight();
         }
+
     }
 
     /**
@@ -212,24 +204,33 @@ public class XScrollView extends ScrollView implements AbsListView.OnScrollListe
     }
 
     /**
+     * Enable or disable auto load more feature when scroll to bottom.
+     *
+     * @param enable
+     */
+    public void setAutoLoad(boolean enable) {
+        mIsAutoLoad = enable;
+    }
+
+    /**
      * Auto call back refresh.
      */
-//    public void autoRefresh() {
-//        mHeader.setVisibleHeight(mHeaderHeight);
-//
-//        if (mEnablePullRefresh && !mPullRefreshing) {
-//            // update the arrow image not refreshing
-//            if (mHeader.getVisibleHeight() > mHeaderHeight) {
-//                mHeader.setState(XHeaderView.STATE_READY);
-//            } else {
-//                mHeader.setState(XHeaderView.STATE_NORMAL);
-//            }
-//        }
-//
-//        mPullRefreshing = true;
-//        mHeader.setState(XHeaderView.STATE_REFRESHING);
-//        refresh();
-//    }
+    public void setAutoRefresh() {
+        mHeaderView.setVisibleHeight(mHeaderContentHeight);
+        mHeaderView.headerContentVisibility(View.VISIBLE);
+        if (mIsEnablePullRefresh && !mIsPullRefreshing) {
+            // update the arrow image not refreshing
+            if (mHeaderView.getVisibleHeight() > mHeaderContentHeight) {
+                mHeaderView.setState(XHeaderView.STATE_READY);
+            } else {
+                mHeaderView.setState(XHeaderView.STATE_NORMAL);
+            }
+        }
+
+        mIsPullRefreshing = true;
+        mHeaderView.setState(XHeaderView.STATE_REFRESHING);
+        refresh();
+    }
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
@@ -261,7 +262,6 @@ public class XScrollView extends ScrollView implements AbsListView.OnScrollListe
             default:
                 // reset
                 mLastY = -1;
-
                 resetHeaderOrBottom();
                 break;
         }
@@ -274,6 +274,7 @@ public class XScrollView extends ScrollView implements AbsListView.OnScrollListe
                 || mContentLayout.getTop() > 0;
     }
 
+
     private boolean isBottom() {
         return Math.abs(getScrollY() + getHeight() - computeVerticalScrollRange()) <= 5 ||
                 (getScrollY() > 0 && null != mFooterView && mFooterView.getBottomMargin() > 0);
@@ -282,7 +283,7 @@ public class XScrollView extends ScrollView implements AbsListView.OnScrollListe
     private void resetHeaderOrBottom() {
         if (isTop()) {
             // invoke refresh
-            if (!mIsPullRefreshing && mIsEnablePullRefresh && mHeaderView.getVisibleHeight() > mHeaderContentHeight) {
+            if (mIsEnablePullRefresh && mHeaderView.getVisibleHeight() > mHeaderContentHeight) {
                 mIsPullRefreshing = true;
                 mHeaderView.setState(XHeaderView.STATE_REFRESHING);
                 refresh();
@@ -291,10 +292,8 @@ public class XScrollView extends ScrollView implements AbsListView.OnScrollListe
 
         } else if (isBottom()) {
             // invoke load more.
-            if (!mIsPullLoading && mIsEnablePullLoad && mFooterView.getBottomMargin() > PULL_LOAD_MORE_DELTA) {
-                mIsPullLoading = true;
-                mFooterView.setState(XFooterView.STATE_LOADING);
-                loadMore();
+            if (mIsEnablePullLoad && mFooterView.getBottomMargin() > PULL_LOAD_MORE_DELTA) {
+                startLoadMore();
             }
             resetFooterHeight();
         }
@@ -375,6 +374,13 @@ public class XScrollView extends ScrollView implements AbsListView.OnScrollListe
         }
     }
 
+    private void startLoadMore() {
+        if (!mIsPullLoading) {
+            mIsPullLoading = true;
+            mFooterView.setState(XFooterView.STATE_LOADING);
+            loadMore();
+        }
+    }
 
     @Override
     public void computeScroll() {
@@ -389,6 +395,25 @@ public class XScrollView extends ScrollView implements AbsListView.OnScrollListe
             invokeOnScrolling();
         }
         super.computeScroll();
+    }
+
+    @Override
+    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+        // Grab the last child placed in the ScrollView, we need it to determinate the bottom position.
+        View view = getChildAt(getChildCount() - 1);
+
+        if (null != view) {
+            // Calculate the scroll diff
+            int diff = (view.getBottom() - (view.getHeight() + view.getScrollY()));
+
+            // if diff is zero, then the bottom has been reached
+            if (diff == 0 && mIsAutoLoad) {
+                // notify that we have reached the bottom
+                startLoadMore();
+            }
+        }
+
+        super.onScrollChanged(l, t, oldl, oldt);
     }
 
     private void invokeOnScrolling() {
@@ -408,25 +433,6 @@ public class XScrollView extends ScrollView implements AbsListView.OnScrollListe
 //            mScrollListener.onScrollStateChanged(view, scrollState);
 //        }
     }
-
-    @Override
-    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
-//        // Grab the last child placed in the ScrollView, we need it to determinate the bottom position.
-//        View view = getChildAt(getChildCount() - 1);
-//
-//        if (null != view) {
-//            // Calculate the scroll diff
-//            int diff = (view.getBottom() - (view.getHeight() + view.getScrollY()));
-//
-//            // if diff is zero, then the bottom has been reached
-//            if (diff == 0 && mEnableAutoLoad) {
-//                // notify that we have reached the bottom
-//                startLoadMore();
-//            }
-//        }
-//
-//        super.onScrollChanged(l, t, oldl, oldt);
-    }
 //
     @Override
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
@@ -436,6 +442,14 @@ public class XScrollView extends ScrollView implements AbsListView.OnScrollListe
 //            mScrollListener.onScroll(view, firstVisibleItem, visibleItemCount, totalItemCount);
 //        }
     }
+
+    //    /**
+//     * You can listen ListView.OnScrollListener or this one. it will invoke
+//     * onXScrolling when header/footer scroll back.
+//     */
+//    public interface OnXScrollListener extends OnScrollListener {
+//        public void onXScrolling(View view);
+//    }
 
     private void refresh() {
         if (mIsEnablePullRefresh && null != mListener) {
@@ -449,14 +463,6 @@ public class XScrollView extends ScrollView implements AbsListView.OnScrollListe
         }
     }
 
-//    /**
-//     * You can listen ListView.OnScrollListener or this one. it will invoke
-//     * onXScrolling when header/footer scroll back.
-//     */
-//    public interface OnXScrollListener extends OnScrollListener {
-//        public void onXScrolling(View view);
-//    }
-
     /**
      * Implements this interface to get refresh/load more event.
      */
@@ -465,4 +471,6 @@ public class XScrollView extends ScrollView implements AbsListView.OnScrollListe
 
         public void onLoadMore();
     }
+
+
 }

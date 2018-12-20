@@ -20,6 +20,8 @@ public class ChatActivity extends BaseActivity<ChatPresenter> implements IChatCo
         super.initView();
         View inflate = LayoutInflater.from(context).inflate(R.layout.fragment_chat, null);
         XScrollView scrollView = findViewById(R.id.test);
+        scrollView.setPullLoadEnable(false);
+        scrollView.setPullRefreshEnable(false);
         scrollView.setContentView(inflate);
     }
 
