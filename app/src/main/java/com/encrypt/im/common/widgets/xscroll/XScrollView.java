@@ -134,7 +134,6 @@ public class XScrollView extends ScrollView implements AbsListView.OnScrollListe
         mHeaderView.headerContentVisibility(enable ? View.VISIBLE : View.INVISIBLE);
     }
 
-
     /**
      * Enable or disable pull up load more feature.
      *
